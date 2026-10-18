@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" fill="none" role="img" aria-label="ITRAHUB">
+  <title>ITRAHUB</title>
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+  <rect x="17" y="18" width="8" height="30" rx="2" fill="#FFFFFF"/>
+  <rect x="39" y="26" width="8" height="22" rx="2" fill="#FFFFFF"/>
+  <rect x="24" y="30" width="16" height="7" fill="#FFFFFF"/>
+  <circle cx="43" cy="17" r="5.5" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,72 @@
+{
+  "name": "ITRAHUB brand tokens",
+  "version": "1.0.0",
+  "date": "2026-10-18",
+  "source": "dashboard/app/globals.css",
+  "note": "Les valeurs du mode sombre sont une interprétation non validée par le client.",
+  "font": {
+    "family": "Urbanist",
+    "fallback": "ui-sans-serif, system-ui, sans-serif",
+    "weights": [400, 500, 600, 700],
+    "license": "SIL Open Font License 1.1 (Google Fonts)"
+  },
+  "radius": { "control": "4px", "rail-icon": "6px", "badge": "4px" },
+  "color": {
+    "light": {
+      "ink": "#0F172A",
+      "slate": "#334155",
+      "muted": "#647385",
+      "mutedDecorative": "#94A3B8",
+      "line": "#E2E8F0",
+      "surface": "#F8FAFC",
+      "panel": "#FFFFFF",
+      "background": "#EEF4F8",
+      "selected": "#E6F0FB",
+      "navBackground": "#EDF3F8",
+      "navActive": "#293D49",
+      "link": "#216EAF",
+      "focusRing": "#2374B5",
+      "accent": "#0F172A",
+      "onAccent": "#FFFFFF",
+      "danger": "#B91C1C",
+      "dangerSoft": "#FEF2F2",
+      "warning": "#C2660C",
+      "warningSoft": "#FFF7ED",
+      "success": "#15803D",
+      "successSoft": "#F0FDF4",
+      "infoSoft": "#EEF5FC"
+    },
+    "dark": {
+      "ink": "#E2E8F0",
+      "slate": "#CBD5E1",
+      "muted": "#A5B2C3",
+      "line": "#1E293B",
+      "surface": "#0F172A",
+      "panel": "#0F172A",
+      "background": "#0B1220",
+      "selected": "#1B2740",
+      "navBackground": "#101C2C",
+      "navActive": "#31495D",
+      "link": "#8EC5FA",
+      "focusRing": "#94A3B8",
+      "accent": "#E2E8F0",
+      "onAccent": "#0F172A",
+      "danger": "#F87171",
+      "dangerSoft": "#2A1416",
+      "warning": "#FB923C",
+      "warningSoft": "#2A1C0F",
+      "success": "#4ADE80",
+      "successSoft": "#0F241A",
+      "infoSoft": "#16202E"
+    }
+  },
+  "typography": {
+    "heading01": { "size": "22px", "lineHeight": "28px", "weight": 600, "letterSpacing": "-0.012em" },
+    "heading02": { "size": "32px", "lineHeight": "40px", "weight": 600, "letterSpacing": "-0.02em", "usage": "exceptionnel" },
+    "paragraph": { "size": "14px", "lineHeight": "20px", "weight": 400 },
+    "label": { "size": "14px", "lineHeight": "20px", "weight": 500 },
+    "secondary": { "size": "14px", "lineHeight": "20px", "weight": 400, "note": "La charte prévoyait 300 ; passé à 400 pour la lisibilité." },
+    "meta": { "size": "12px", "lineHeight": "16px", "weight": 400 },
+    "tableHeader": { "size": "12px", "lineHeight": "18px", "weight": 600, "letterSpacing": "0.01em" }
+  }
+}

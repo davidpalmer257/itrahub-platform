@@ -1,0 +1,71 @@
+/*
+  ITRAHUB — Jetons de marque v1.0 (CSS)
+  Source de vérité dans l'application : dashboard/app/globals.css
+  Ce fichier reprend uniquement les valeurs de marque, pour les réutiliser hors de l'application
+  (site vitrine, présentations, autre projet). Les valeurs sombres sont une interprétation
+  non validée par le client.
+*/
+
+:root {
+  /* Palette de la charte */
+  --itrahub-ink: #0f172a;      /* A — texte principal, montants, action principale */
+  --itrahub-slate: #334155;    /* B — texte secondaire lisible, icônes, contrôles */
+  --itrahub-line: #e2e8f0;     /* D — bordures et séparateurs */
+  --itrahub-surface: #f8fafc;  /* E — fond de travail, survol léger */
+  --itrahub-panel: #ffffff;    /* panneaux */
+  --itrahub-muted-decor: #94a3b8; /* C — repères décoratifs et éléments désactivés UNIQUEMENT (2,56:1) */
+
+  /* Extensions apportées par l'itération de design */
+  --itrahub-muted: #647385;    /* texte de support lisible (4,85:1 sur blanc) */
+  --itrahub-bg: #eef4f8;       /* fond de l'espace de travail */
+  --itrahub-selected: #e6f0fb; /* ligne ou élément sélectionné */
+  --itrahub-nav-bg: #edf3f8;   /* fond de la navigation et du tiroir mobile */
+  --itrahub-nav-active: #293d49; /* entrée de navigation active */
+  --itrahub-link: #216eaf;
+  --itrahub-ring: #2374b5;     /* anneau de focus clavier */
+
+  /* Action principale */
+  --itrahub-accent: #0f172a;
+  --itrahub-on-accent: #ffffff;
+
+  /* Couleurs sémantiques — significations métier du SRS : ne jamais les utiliser pour décorer */
+  --itrahub-danger: #b91c1c;   /* rouge : dépassement de crédit, échéance dépassée */
+  --itrahub-danger-soft: #fef2f2;
+  --itrahub-warning: #c2660c;  /* orange : déficit de ressources, dépôt proche */
+  --itrahub-warning-soft: #fff7ed;
+  --itrahub-success: #15803d;  /* vert : état conforme */
+  --itrahub-success-soft: #f0fdf4;
+  --itrahub-info-soft: #eef5fc;
+
+  /* Typographie */
+  --itrahub-font: "Urbanist", ui-sans-serif, system-ui, sans-serif;
+
+  /* Formes */
+  --itrahub-radius: 4px;
+  --itrahub-shadow-overlay: 0 10px 30px -10px rgb(15 23 42 / 0.25);
+}
+
+.itrahub-dark {
+  --itrahub-ink: #e2e8f0;
+  --itrahub-slate: #cbd5e1;
+  --itrahub-muted: #a5b2c3;
+  --itrahub-line: #1e293b;
+  --itrahub-surface: #0f172a;
+  --itrahub-panel: #0f172a;
+  --itrahub-bg: #0b1220;
+  --itrahub-selected: #1b2740;
+  --itrahub-nav-bg: #101c2c;
+  --itrahub-nav-active: #31495d;
+  --itrahub-link: #8ec5fa;
+  --itrahub-ring: #94a3b8;
+  --itrahub-accent: #e2e8f0;
+  --itrahub-on-accent: #0f172a;
+  --itrahub-danger: #f87171;
+  --itrahub-danger-soft: #2a1416;
+  --itrahub-warning: #fb923c;
+  --itrahub-warning-soft: #2a1c0f;
+  --itrahub-success: #4ade80;
+  --itrahub-success-soft: #0f241a;
+  --itrahub-info-soft: #16202e;
+  --itrahub-shadow-overlay: 0 10px 30px -10px rgb(0 0 0 / 0.6);
+}
