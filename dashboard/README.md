@@ -1,56 +1,38 @@
-# ITRAHUB — Dashboard web (socle UI/UX)
+# ITRAHUB dashboard
 
-Interface de travail du périmètre **budgétaire** de la finance pour ITRACOM
-Holding. Première version UI/UX : parcours de connexion simulé, navigation
-finance (Prévision / Budget / Exécution) et contenu métier regroupé sous
-**Budget**, conformément au référentiel `ITRAHUB_SCOPE_DEVELOPPEMENT.md` (v2.1)
-et au SRS de gestion budgétaire.
+The Next.js web application for ITRAHUB, ITRACOM Holding’s budget management platform. This package currently provides a responsive shell, preferences and a simulated login. `/dashboard`, `/prevision`, `/execution` and every Budget section show a development placeholder.
 
-## Stack
+Start with the [project README](../README.md) for the repository overview and [architecture guide](../docs/ARCHITECTURE.md) for the actual source layout, route map, browser state and integration boundaries.
 
-- Next.js 15 (App Router) · React 19 · TypeScript
-- Tailwind CSS 4
-- Police Urbanist, palette et densité de la charte graphique
+## Run locally
 
-## Démarrer
+Use Node.js 24 and npm for local development. The locked image-processing dependencies require at least Node.js 20.9.0. Run these commands from `dashboard/`:
 
 ```bash
-npm install
-npm run dev     # http://localhost:3000
+npm ci
+npm run dev
 ```
 
-Connexion de démonstration : matricule **ITC-0042** (ou **ITC-0108**), code
-email **480192**, puis tout mot de passe d'au moins 4 caractères.
+Open [localhost:3000](http://localhost:3000). For the demo login, use matricule `ITC-0042` or `ITC-0108`, code `480192`, and any password with at least four characters. No email is sent and no server authentication is performed; both matricules lead to the same static demonstration profile.
 
-## Limites de cette version
+## Checks and production build
 
-- **Démonstration UI** : aucun email, aucune persistance ni authentification
-  réelle ne sont raccordés. Les données sont des exemples identifiés.
-- **Prévision** et **Exécution** n'affichent qu'un message « en cours de
-  développement ». Tout le contenu métier du SRS est accessible sous **Budget**.
-- Les décisions ouvertes (D-01 à D-18) sont signalées dans l'interface et ne
-  sont pas tranchées silencieusement.
-
-## Structure
-
+```bash
+npx tsc --noEmit
+npm run build
+npm start
 ```
-app/
-  login/                 Parcours matricule → code email → mot de passe
-  (app)/
-    dashboard/           Votre journée, avancement, alertes, sociétés
-    prevision/           Page « en cours de développement »
-    execution/           Page « en cours de développement »
-    budget/
-      exercices/         Exercices, taux figés, 10 phases de campagne
-      budgets/ [id]/     Liste + dossier (lignes, calendrier, circuit, signatures)
-      signatures/        « À signer » (tâches autorisées)
-      ressources/        Équilibre par source, déficit
-      societes/          Dossiers des sociétés, approbation
-      consolidation/     Total USD, trois signatures, adoption
-      depenses/ [id]/    Circuit demande → paiement enregistré
-      credit/            Suivi des crédits, virements, rectificatifs
-      referentiels/      Organisation, rôles, natures, sources, fournisseurs
-      historique/        Journal des décisions
-components/              app-shell, sidebar, topbar, command palette, UI
-lib/                     types, données de démonstration, i18n, format, labels
-```
+
+`npm start` serves the production build and requires `npm run build` first. The build loads Urbanist through `next/font/google`, so font retrieval may require network access. No environment variables or backend service are required for this UI demo.
+
+The existing `npm run lint` script invokes `next lint`, but ESLint dependencies and configuration have not been added. It may prompt for setup rather than run a ready-to-use check. There is no automated test suite yet.
+
+## Source guide
+
+| Path | Responsibility |
+| --- | --- |
+| `app/` | App Router routes, layouts, metadata and global CSS. Budget subpaths share `app/(app)/budget/[...slug]/page.tsx`. |
+| `components/` | Shell, navigation, login controls, brand components and reusable UI. |
+| `lib/` | Navigation, translations, domain types, sample data and calculation/formatting helpers. |
+
+Language, theme and desktop navigation preferences use local storage; the simulated session flag uses session storage. Business data is static and has no persistence. The planned API, database, permissions, signatures and financial workflows are described in the [development scope](../ITRAHUB_SCOPE_DEVELOPPEMENT.md), not implemented by this package.
