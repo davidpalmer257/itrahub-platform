@@ -38,6 +38,8 @@ In **Setup Node.js App**, use:
 
 The wrapper starts the generated Next.js server from `runtime/`. Use the selector's controls only for this application. Preserve all existing domain mappings, document roots, databases, application registrations, and files. DNS and TLS changes should apply only to the new subdomain.
 
+When the new document root sits beneath an existing WordPress site, its parent rewrite rules can intercept Next.js routes. Add the directives from [`deployment/cpanel/document-root.htaccess`](../deployment/cpanel/document-root.htaccess) to the new subdomain's `.htaccess`, keeping cPanel's generated Passenger configuration. Leave the parent site's `.htaccess` unchanged.
+
 ## Verify a deployment
 
 Confirm DNS resolves to the intended hosting server and the TLS certificate covers `itrahub.i-success.net`. Check the login, demo login flow, application navigation, stylesheet and script loading, and direct access to Budget URLs. Recheck the existing sites and domain mappings against the recorded baseline.
@@ -49,3 +51,25 @@ ITRAHUB_VERIFY_URL=https://itrahub.i-success.net node deployment/cpanel/verify.m
 ```
 
 This verifies delivery of the current UI demo. It does not add real authentication or implement the unfinished finance modules. Resource capacity should be measured after deployment; a successful startup alone is not a load test.
+
+## Deployment record — 19 October 2026
+
+| Item | Recorded result |
+| --- | --- |
+| Application URL | https://itrahub.i-success.net |
+| Application release | `c12ee69c83e1197afce33e9e949cabc32c8b4705` |
+| Linux build | [GitHub Actions run 39231596928](https://github.com/davidpalmer257/itrahub-platform/actions/runs/39231596928) |
+| Application root | `itrahub-platform-c12ee69`, relative to the cPanel home |
+| Document root | `public_html/itrahub.i-success.net` |
+| Runtime | Node.js 22.23.3, Production mode, Passenger 6.2.0 |
+| TLS | Valid certificate for the bare subdomain and its `www` alias; AutoSSL renewal enabled |
+| Browser checks | Desktop and mobile demo login, direct Budget route, command palette, theme, navigation drawer, and logout passed over HTTPS |
+| Preservation checks | Existing project file metadata, document roots, parent `.htaccess`, and certificates matched their pre-deployment records |
+
+The application and TLS were verified directly on the hosting server, and HTTPS delivery also passed through Cloudflare DNS. Browser checks used an explicit mapping of the target hostname to the hosting IP with normal certificate validation; they do not establish consistency across every DNS resolver.
+
+**Outstanding provider action:** `ns33.afriregister.com` and `ns9.afriregister.co.ke` return the new A record, but `ns3.afriregister.com` still returns authoritative `NXDOMAIN`. Some networks therefore cannot resolve the site. The cPanel zone contains `itrahub.i-success.net → 2.59.156.218`; this is a nameserver synchronization issue. cPanel-only access does not provide the WHM/root controls needed to synchronize the DNS cluster.
+
+Suggested hosting-provider request:
+
+> Please synchronize the current `i-success.net` DNS zone from `ns33.afriregister.com` / `simba.afriregister.com` (`2.59.156.218`) to `ns3.afriregister.com` (`80.241.213.244`). The latter still serves an older zone and returns NXDOMAIN for `itrahub.i-success.net`; the current A record is `2.59.156.218`. Preserve existing records and nameserver delegation. The application is already deployed and HTTPS works when the current DNS record is used.

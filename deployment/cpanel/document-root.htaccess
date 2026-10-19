@@ -1,0 +1,6 @@
+# Use these directives only in the dedicated ITRAHUB subdomain document root.
+# Keep cPanel's generated Passenger configuration below them.
+# This prevents a parent WordPress site from rewriting Next.js routes.
+<IfModule mod_rewrite.c>
+RewriteEngine Off
+</IfModule>

@@ -10,7 +10,9 @@ ITRAHUB brings the group's finance workspace into one interface, organized aroun
 
 > **Current status: UI foundation / demo.** The login flow, navigation, preferences, and shared interface components are implemented. The dashboard and finance module pages currently display a development placeholder. There is no connected backend, database, or real authentication.
 
-[Get started](#getting-started) · [App structure](#app-structure) · [Architecture](docs/ARCHITECTURE.md) · [Contribute](CONTRIBUTING.md) · [Report an issue](https://github.com/davidpalmer257/itrahub-platform/issues)
+[Deployed demo](https://itrahub.i-success.net) · [Get started](#getting-started) · [App structure](#app-structure) · [Architecture](docs/ARCHITECTURE.md) · [Contribute](CONTRIBUTING.md) · [Report an issue](https://github.com/davidpalmer257/itrahub-platform/issues)
+
+Deployment checks and the DNS provider follow-up are recorded in the [cPanel deployment guide](docs/CPANEL_DEPLOYMENT.md#deployment-record--19-october-2026).
 
 ## What is available
 
@@ -85,10 +87,13 @@ itrahub-platform/
 ├── README.md                         # Project overview and setup
 ├── CONTRIBUTING.md                   # Change and verification guidance
 ├── docs/
-│   └── ARCHITECTURE.md                # Routes, state, data, and integration boundaries
+│   ├── ARCHITECTURE.md                # Routes, state, data, and integration boundaries
+│   └── CPANEL_DEPLOYMENT.md           # Release workflow and hosting runbook
 ├── .github/
 │   ├── ISSUE_TEMPLATE/               # Bug report and feature request templates
-│   └── pull_request_template.md      # Review context and validation
+│   ├── pull_request_template.md      # Review context and validation
+│   └── workflows/cpanel-build.yml    # Manual Linux release build and smoke checks
+├── deployment/cpanel/                # Passenger entry point, verification, routing template
 ├── dashboard/                        # Runnable Next.js application
 │   ├── app/
 │   │   ├── layout.tsx                # Metadata, font, styles, and app provider
@@ -146,6 +151,7 @@ These are outstanding work areas, not delivery dates or completed capabilities. 
 | [Development scope](ITRAHUB_SCOPE_DEVELOPPEMENT.md) | Scope, business requirements, constraints, and open decisions |
 | [Budget management SRS](ITRAHUB%20SRS%20Gestion%20Budgetaire.docx) | Original functional specification |
 | [Architecture guide](docs/ARCHITECTURE.md) | Current implementation and extension points |
+| [cPanel deployment](docs/CPANEL_DEPLOYMENT.md) | Linux release packaging, isolation, verification, and deployment status |
 | [Dashboard guide](dashboard/README.md) | Application-local commands and entry points |
 | [Brand guide](branding/BRAND_GUIDE.md) | Logos, visual identity, and asset usage |
 | [Brand kit](ITRAHUB_Brand_Kit_v1.0.zip) | Packaged brand assets |
