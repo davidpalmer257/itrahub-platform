@@ -76,7 +76,7 @@ From `dashboard/`:
 | `npm run build` | Create a production build of the current UI |
 | `npm start` | Serve that build after `npm run build` |
 
-The existing `npm run lint` script calls `next lint`, but ESLint dependencies and configuration have not been added. It may prompt for setup instead of running a configured check. There is no test script or GitHub Actions workflow configured yet.
+The existing `npm run lint` script calls `next lint`, but ESLint dependencies and configuration have not been added. It may prompt for setup instead of running a configured check. There is no general test suite yet. A manual [cPanel build workflow](.github/workflows/cpanel-build.yml) type-checks, builds, and verifies an isolated Linux release; see the [deployment guide](docs/CPANEL_DEPLOYMENT.md).
 
 ## App structure
 

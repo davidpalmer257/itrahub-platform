@@ -37,7 +37,7 @@ For interface changes, also check the affected routes in the browser at desktop 
 
 For documentation-only changes, check file links, commands, formatting, and agreement with the current source. Application tests are not required solely for prose edits.
 
-There is currently no automated test suite, configured ESLint setup, or GitHub Actions workflow. `npm run lint` invokes `next lint`, but its ESLint dependencies and configuration are missing, so it may prompt for setup. Use the checks above and document any additional validation you perform.
+There is currently no general automated test suite or configured ESLint setup. `npm run lint` invokes `next lint`, but its ESLint dependencies and configuration are missing, so it may prompt for setup. The manual [cPanel release workflow](.github/workflows/cpanel-build.yml) also verifies the packaged server, routes, and production assets. Use the checks above and document any additional validation you perform.
 
 ## Open a pull request
 

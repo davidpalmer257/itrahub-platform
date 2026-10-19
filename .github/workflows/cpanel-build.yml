@@ -1,0 +1,55 @@
+name: Build cPanel release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      ITRAHUB_STANDALONE: "1"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - name: Install, type-check, and build
+        working-directory: dashboard
+        run: |
+          npm ci
+          npx tsc --noEmit
+          npm run build
+      - name: Package isolated Passenger application
+        run: |
+          mkdir -p deployment-package/runtime
+          cp -a dashboard/.next/standalone/. deployment-package/runtime/
+          cp -a dashboard/.next/static deployment-package/runtime/.next/static
+          if [ -d dashboard/public ]; then cp -a dashboard/public deployment-package/runtime/public; fi
+          cp deployment/cpanel/app.js deployment/cpanel/package.json deployment-package/
+          node -e 'require("fs").writeFileSync("deployment-package/deployment.json", JSON.stringify({commit:process.env.GITHUB_SHA, run:process.env.GITHUB_RUN_ID, platform:process.platform, arch:process.arch, node:process.version}, null, 2) + "\n")'
+      - name: Verify the packaged application
+        run: |
+          PORT=3100 node deployment-package/app.js > /tmp/itrahub-runtime.log 2>&1 &
+          runtime_pid=$!
+          trap 'kill "$runtime_pid" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 60); do
+            if curl --silent --fail http://127.0.0.1:3100/login > /dev/null; then break; fi
+            sleep 1
+          done
+          node deployment/cpanel/verify.mjs || { cat /tmp/itrahub-runtime.log; exit 1; }
+      - name: Create release archive
+        working-directory: deployment-package
+        run: zip -qr ../itrahub-cpanel.zip .
+      - uses: actions/upload-artifact@v7
+        with:
+          name: itrahub-cpanel-${{ github.sha }}
+          path: itrahub-cpanel.zip
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,12 @@
+{
+  "name": "itrahub-cpanel-runtime",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Passenger entry point for the ITRAHUB standalone deployment",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
